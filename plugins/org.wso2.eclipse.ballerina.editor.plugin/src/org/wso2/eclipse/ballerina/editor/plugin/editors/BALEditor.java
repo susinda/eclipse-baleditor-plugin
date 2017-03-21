@@ -12,6 +12,7 @@ public class BALEditor extends TextEditor {
 		setSourceViewerConfiguration(new BALSourceConfiguration(colorManager));
 		setDocumentProvider(new BALDocumentProvider());
 	}
+
 	public void dispose() {
 		colorManager.dispose();
 		super.dispose();

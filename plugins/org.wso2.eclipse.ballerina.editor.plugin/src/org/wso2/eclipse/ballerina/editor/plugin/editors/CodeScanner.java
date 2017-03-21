@@ -6,25 +6,29 @@ import org.eclipse.jface.text.*;
 public class CodeScanner extends RuleBasedScanner {
 
 	public CodeScanner(ColorManager manager) {
-	    
-		IToken procInstr = new Token(new TextAttribute(manager.getColor(IBALColorConstants.KEYWORD_PURPLE)));
-		IToken stringToken = new Token(new TextAttribute(manager.getColor(IBALColorConstants.STRUNG_BLUE)));
 
-		IRule[] rules = new IRule[4];
-		
+		IToken procInstr = new Token(new TextAttribute(manager.getColor(IBALColorConstants.KEYWORD_PURPLE)));
+		IToken string = new Token(new TextAttribute(manager.getColor(IBALColorConstants.STRUNG_BLUE)));
+
+		IRule[] rules = new IRule[5];
+
+		rules[0] = new SingleLineRule("\"", "\"", string, '\\');
 		// Add rule for processing string
-		rules[0] = new SingleLineRule("\"", "\"", stringToken, '\\');
-		// Add rule for processing string
-		rules[1] = new SingleLineRule("\'", "\'", stringToken, '\\');
+		rules[1] = new SingleLineRule("\'", "\'", string, '\\');
 		// Add generic whitespace rule.
 		rules[2] = new WhitespaceRule(new BALWhitespaceDetector());
 
 		// Add rule for keywords
 		WordRule wordRule = new WordRule(new WordDetector());
-		wordRule.addWord("import", procInstr);
-		wordRule.addWord("service", procInstr);
-		wordRule.addWord("resource", procInstr);
+		String[] keyWords = BalerinaLanguage.getInstance().getKeyWords();
+		for (String keyWord : keyWords) {
+			wordRule.addWord(keyWord.trim(), procInstr);
+		}
+
 		rules[3] = wordRule;
+
+		IToken comment = new Token(new TextAttribute(manager.getColor(IBALColorConstants.GREEN_COMMENT)));
+		rules[4] = new EndOfLineRule("//", comment); //$NON-NLS-1$
 
 		setRules(rules);
 	}

@@ -11,7 +11,7 @@ public class CommentScanner extends RuleBasedScanner {
 				new TextAttribute(manager.getColor(IBALColorConstants.GREEN_COMMENT)));
 
 		IRule[] rules = new IRule[1];
-		rules[0] = new EndOfLineRule("//", string); 
+		rules[0] = new SingleLineRule("//", "\n", string); 
 		setRules(rules);
 	}
 }

@@ -7,7 +7,7 @@
       <editor
             name="WSO2 BAL Editor"
             extensions="bal"
-            icon="icons/sample.gif"
+            icon="icons/dancer.jpg"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="org.wso2.eclipse.ballerina.editor.plugin.editors.BALEditor"
             id="org.wso2.eclipse.ballerina.editor.plugin.editors.BALEditor">
