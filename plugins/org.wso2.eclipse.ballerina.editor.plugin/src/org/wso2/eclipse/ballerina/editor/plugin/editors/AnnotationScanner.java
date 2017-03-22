@@ -7,7 +7,7 @@ public class AnnotationScanner extends RuleBasedScanner {
 
 	public AnnotationScanner(ColorManager manager) {
 
-		IToken string = new Token(new TextAttribute(manager.getColor(IBALColorConstants.STRUNG_BLUE)));
+		IToken string = new Token(new TextAttribute(manager.getColor(IBallerinaColorConstants.STRUNG_BLUE)));
 
 		IRule[] rules = new IRule[3];
 
@@ -16,7 +16,7 @@ public class AnnotationScanner extends RuleBasedScanner {
 		// Add rule for processing string
 		rules[1] = new SingleLineRule("\'", "\'", string, '\\');
 		// Add generic whitespace rule.
-		rules[2] = new WhitespaceRule(new BALWhitespaceDetector());
+		rules[2] = new WhitespaceRule(new WhitespaceDetector());
 
 		// No need to add annotation rule as it is covered in partition rule
 		// Therefore below line is purposely commented

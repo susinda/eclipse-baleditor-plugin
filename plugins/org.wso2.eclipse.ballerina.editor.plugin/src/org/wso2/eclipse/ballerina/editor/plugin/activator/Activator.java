@@ -49,7 +49,7 @@ public class Activator extends AbstractUIPlugin {
 		String[] utilsProposals = new String[] { "base64ToBase16Encode", "base64decode", "base64encode", "getHash" };
 
 		URL configPath = Platform.getConfigurationLocation().getURL();
-		String balPreferencesPath = configPath.getPath() + "ballerina.preferences";
+		String balPreferencesPath = configPath.getPath() + "ballerina.properties";
 
 		Properties prop = null;
 		try {

@@ -6,13 +6,13 @@ import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 
-public class BALDocumentProvider extends FileDocumentProvider {
+public class BallerinaDocumentProvider extends FileDocumentProvider {
 
 	protected IDocument createDocument(Object element) throws CoreException {
 		IDocument document = super.createDocument(element);
 		if (document != null) {
-			IDocumentPartitioner partitioner = new FastPartitioner(new BALPartitionScanner(),
-					new String[] { BALPartitionScanner.ANNOTATION, BALPartitionScanner.COMMENT });
+			IDocumentPartitioner partitioner = new FastPartitioner(new BallerinaPartitionScanner(),
+					new String[] { BallerinaPartitionScanner.ANNOTATION, BallerinaPartitionScanner.COMMENT });
 			partitioner.connect(document);
 			document.setDocumentPartitioner(partitioner);
 		}

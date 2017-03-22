@@ -19,7 +19,7 @@ public class BallerinaCompletionProcessor implements IContentAssistProcessor {
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int documentOffset) {
 		 
 		String[] fgProposals = null;
-		String currentText = currentText(viewer.getDocument(), documentOffset).getSusbString();
+		String currentText = currentText(viewer.getDocument(), documentOffset);
 		if (!currentText.isEmpty()) {
 			fgProposals = BalerinaLanguage.getInstance().getProposals(currentText);
 		}
@@ -64,7 +64,7 @@ public class BallerinaCompletionProcessor implements IContentAssistProcessor {
 		return null;
 	}
 	
-	private TextInfo currentText(IDocument document, int documentOffset)
+	private String currentText(IDocument document, int documentOffset)
     {
         try
         {
@@ -78,7 +78,7 @@ public class BallerinaCompletionProcessor implements IContentAssistProcessor {
             char c = partitionText.charAt(index-1);
 
             if (Character.isWhitespace(c) || Character.isWhitespace(partitionText.charAt(index - 1))) {
-                return new TextInfo("", documentOffset, true);
+                return "";
             } else {
                 int start = index-1;
                 c = partitionText.charAt(start);
@@ -92,8 +92,8 @@ public class BallerinaCompletionProcessor implements IContentAssistProcessor {
                 int end = index-1;
                 c = partitionText.charAt(end);
             
-                String substring = partitionText.substring(start, end);
-                return new TextInfo(substring, partitionOffset + start, false);
+                String subString = partitionText.substring(start, end);
+                return subString;
             }
 
         }

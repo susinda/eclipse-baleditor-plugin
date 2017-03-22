@@ -7,8 +7,8 @@ public class CodeScanner extends RuleBasedScanner {
 
 	public CodeScanner(ColorManager manager) {
 
-		IToken procInstr = new Token(new TextAttribute(manager.getColor(IBALColorConstants.KEYWORD_PURPLE)));
-		IToken string = new Token(new TextAttribute(manager.getColor(IBALColorConstants.STRUNG_BLUE)));
+		IToken procInstr = new Token(new TextAttribute(manager.getColor(IBallerinaColorConstants.KEYWORD_PURPLE)));
+		IToken string = new Token(new TextAttribute(manager.getColor(IBallerinaColorConstants.STRUNG_BLUE)));
 
 		IRule[] rules = new IRule[5];
 
@@ -16,10 +16,10 @@ public class CodeScanner extends RuleBasedScanner {
 		// Add rule for processing string
 		rules[1] = new SingleLineRule("\'", "\'", string, '\\');
 		// Add generic whitespace rule.
-		rules[2] = new WhitespaceRule(new BALWhitespaceDetector());
+		rules[2] = new WhitespaceRule(new WhitespaceDetector());
 
 		// Add rule for keywords
-		WordRule wordRule = new WordRule(new WordDetector());
+		WordRule wordRule = new WordRule(new WordDetector(this));
 		String[] keyWords = BalerinaLanguage.getInstance().getKeyWords();
 		for (String keyWord : keyWords) {
 			wordRule.addWord(keyWord.trim(), procInstr);
@@ -27,21 +27,9 @@ public class CodeScanner extends RuleBasedScanner {
 
 		rules[3] = wordRule;
 
-		IToken comment = new Token(new TextAttribute(manager.getColor(IBALColorConstants.GREEN_COMMENT)));
+		IToken comment = new Token(new TextAttribute(manager.getColor(IBallerinaColorConstants.GREEN_COMMENT)));
 		rules[4] = new EndOfLineRule("//", comment); //$NON-NLS-1$
 
 		setRules(rules);
-	}
-
-	class WordDetector implements IWordDetector {
-		@Override
-		public boolean isWordStart(final char c) {
-			return Character.isLetter(c);
-		}
-
-		@Override
-		public boolean isWordPart(final char c) {
-			return Character.isLetter(c);
-		}
 	}
 }

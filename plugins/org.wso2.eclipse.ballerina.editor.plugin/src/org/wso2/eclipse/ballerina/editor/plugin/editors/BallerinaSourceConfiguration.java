@@ -11,20 +11,20 @@ import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
-public class BALSourceConfiguration extends SourceViewerConfiguration {
+public class BallerinaSourceConfiguration extends SourceViewerConfiguration {
 
 	private CodeScanner codeScanner;
 	private AnnotationScanner annotationScanner;
 	private CommentScanner commentScanner;
 	private ColorManager colorManager;
 
-	public BALSourceConfiguration(ColorManager colorManager) {
+	public BallerinaSourceConfiguration(ColorManager colorManager) {
 		this.colorManager = colorManager;
 	}
 
 	public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
-		return new String[] { IDocument.DEFAULT_CONTENT_TYPE, BALPartitionScanner.ANNOTATION,
-				BALPartitionScanner.COMMENT };
+		return new String[] { IDocument.DEFAULT_CONTENT_TYPE, BallerinaPartitionScanner.ANNOTATION,
+				BallerinaPartitionScanner.COMMENT };
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class BALSourceConfiguration extends SourceViewerConfiguration {
 		if (codeScanner == null) {
 			codeScanner = new CodeScanner(colorManager);
 			codeScanner.setDefaultReturnToken(
-					new Token(new TextAttribute(colorManager.getColor(IBALColorConstants.DEFAULT_BLACK))));
+					new Token(new TextAttribute(colorManager.getColor(IBallerinaColorConstants.DEFAULT_BLACK))));
 		}
 		return codeScanner;
 	}
@@ -52,7 +52,7 @@ public class BALSourceConfiguration extends SourceViewerConfiguration {
 		if (annotationScanner == null) {
 			annotationScanner = new AnnotationScanner(colorManager);
 			annotationScanner.setDefaultReturnToken(
-					new Token(new TextAttribute(colorManager.getColor(IBALColorConstants.ANNOTATION_GREY))));
+					new Token(new TextAttribute(colorManager.getColor(IBallerinaColorConstants.ANNOTATION_GREY))));
 		}
 		return annotationScanner;
 	}
@@ -61,7 +61,7 @@ public class BALSourceConfiguration extends SourceViewerConfiguration {
 		if (commentScanner == null) {
 			commentScanner = new CommentScanner(colorManager);
 			commentScanner.setDefaultReturnToken(
-					new Token(new TextAttribute(colorManager.getColor(IBALColorConstants.GREEN_COMMENT))));
+					new Token(new TextAttribute(colorManager.getColor(IBallerinaColorConstants.GREEN_COMMENT))));
 		}
 		return commentScanner;
 	}
@@ -74,12 +74,12 @@ public class BALSourceConfiguration extends SourceViewerConfiguration {
 		reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
 
 		dr = new DefaultDamagerRepairer(getBALAnotationScanner());
-		reconciler.setDamager(dr, BALPartitionScanner.ANNOTATION);
-		reconciler.setRepairer(dr, BALPartitionScanner.ANNOTATION);
+		reconciler.setDamager(dr, BallerinaPartitionScanner.ANNOTATION);
+		reconciler.setRepairer(dr, BallerinaPartitionScanner.ANNOTATION);
 
 		dr = new DefaultDamagerRepairer(getBALCommentScanner());
-		reconciler.setDamager(dr, BALPartitionScanner.COMMENT);
-		reconciler.setRepairer(dr, BALPartitionScanner.COMMENT);
+		reconciler.setDamager(dr, BallerinaPartitionScanner.COMMENT);
+		reconciler.setRepairer(dr, BallerinaPartitionScanner.COMMENT);
 
 		return reconciler;
 	}

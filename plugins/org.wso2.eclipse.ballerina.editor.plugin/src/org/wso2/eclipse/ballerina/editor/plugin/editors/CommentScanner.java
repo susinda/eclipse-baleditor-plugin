@@ -8,7 +8,7 @@ public class CommentScanner extends RuleBasedScanner {
 	public CommentScanner(ColorManager manager) {
 		IToken string = 
 			new Token(
-				new TextAttribute(manager.getColor(IBALColorConstants.GREEN_COMMENT)));
+				new TextAttribute(manager.getColor(IBallerinaColorConstants.GREEN_COMMENT)));
 
 		IRule[] rules = new IRule[1];
 		rules[0] = new SingleLineRule("//", "\n", string); 

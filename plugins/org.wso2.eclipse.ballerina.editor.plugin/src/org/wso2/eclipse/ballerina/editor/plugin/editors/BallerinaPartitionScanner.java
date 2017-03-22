@@ -2,11 +2,11 @@ package org.wso2.eclipse.ballerina.editor.plugin.editors;
 
 import org.eclipse.jface.text.rules.*;
 
-public class BALPartitionScanner extends RuleBasedPartitionScanner {
+public class BallerinaPartitionScanner extends RuleBasedPartitionScanner {
 	public final static String ANNOTATION = "__bal_annotation";
 	public final static String COMMENT = "__bal_comment";
 
-	public BALPartitionScanner() {
+	public BallerinaPartitionScanner() {
 
 		IPredicateRule[] rules = new IPredicateRule[1];
 

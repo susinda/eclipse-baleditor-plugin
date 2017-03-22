@@ -2,15 +2,15 @@ package org.wso2.eclipse.ballerina.editor.plugin.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
 
-public class BALEditor extends TextEditor {
+public class BallerinaEditor extends TextEditor {
 
 	private ColorManager colorManager;
 
-	public BALEditor() {
+	public BallerinaEditor() {
 		super();
 		colorManager = new ColorManager();
-		setSourceViewerConfiguration(new BALSourceConfiguration(colorManager));
-		setDocumentProvider(new BALDocumentProvider());
+		setSourceViewerConfiguration(new BallerinaSourceConfiguration(colorManager));
+		setDocumentProvider(new BallerinaDocumentProvider());
 	}
 
 	public void dispose() {
